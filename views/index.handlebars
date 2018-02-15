@@ -1,0 +1,80 @@
+<div class='container'>
+  <h1 class='header'><span class="glyphicon glyphicon-btc" id='btc' aria-hidden="true"></span>URGER MUNCHERS 24/7 </h1>
+</div>
+
+<div class='container'>
+  <div class="carousel slide" data-ride="carousel" id='carouselImage'>
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+    </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+    <img src="/assets/img/burgerA.jpg" alt="">
+    </div>
+    <div class="item">
+    <img src="/assets/img/burgerB.jpg" alt="">
+    </div>
+    <div class="item">
+    <img src="/assets/img/burgerC.jpg" alt="">
+    </div>
+    <div class="item">
+    <img src="/assets/img/burgerD.jpg" alt="">
+    </div>
+    <div class="item">
+    <img src="/assets/img/burgerE.jpg" alt="">
+    </div>
+  </div>    
+  </div> <!-- carousel -->
+</div> <!-- container -->
+
+<div class='container'>
+  <p class='welcome'>Welcome to Burger Munchers! All you can eat burgers 24 hours, 7 days a week. You can begin to devour the burgers already inserted into the database or you can create your own burger and the database will whip it up. </p>
+</div>
+
+<div class='container' id='orderSection'>
+<h3 class='placeOrder'>PLACE AN ORDER WITH CHEF DATABASE BELOW</h3>
+  <form action="/burgers" method="POST">
+    <input type="text" id="name" name="burger_name">
+    <button type="submit" class="addBurgerButton">Place order</button>
+  </form>
+</div>
+
+<main>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-md-6'>
+        <h3 class='devoured'>CHOOSE A BURGER TO DEVOUR</h3>
+        {{#each burgers}}
+                {{#unless this.devoured}}
+                <div>
+                  <form action="/burgers/{{this.id}}?_method=PUT" method="POST">
+                    <button type="submit" class='burgerAvailable'> {{this.burger_name}}</button>
+                  </form>
+                </div>
+              {{/unless}}
+            {{/each}}
+      </div>
+      <div class='col-md-6'>
+        <h3 class='devoured'>DEVOURED</h3>
+          {{#each burgers}}
+            {{#if this.devoured}}
+              <div class='burgerEaten'>
+                <div>
+                {{this.burger_name}}
+                </div>
+              </div>
+            {{/if}}
+          {{/each}}
+      </div>
+    </div>
+  </div>
+</main> 
+<div class='bottomBorder'>
+</div>
